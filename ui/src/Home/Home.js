@@ -5,38 +5,38 @@ import React from 'react';
 
 class Home extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            error : null,
-            isLoaded : false,
-            items : []
-        };
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         error : null,
+    //         isLoaded : false,
+    //         items : []
+    //     };
+    // }
 
-    componentDidMount() {
+    // componentDidMount() {
 
-        fetch('http://localhost:8080/brand/new')
-        .then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({
-                    isLoaded : true,
-                    items : result
-                });
-            },
-            (error) => {
-                this.setState({
-                    isLoaded : true,
-                    error
-                });
-            }
-        )
-    }
+    //     fetch('http://localhost:8080/brand/new')
+    //     .then(res => res.json())
+    //     .then(
+    //         (result) => {
+    //             this.setState({
+    //                 isLoaded : true,
+    //                 items : result
+    //             });
+    //         },
+    //         (error) => {
+    //             this.setState({
+    //                 isLoaded : true,
+    //                 error
+    //             });
+    //         }
+    //     )
+    // }
 
     render() {
-        const { error,isLoaded,items} = this.state;
-        console.log(items);
+        // const { error,isLoaded,items} = this.state;
+        // console.log(items);
         return <h1>Bonjour</h1>;
       }
 
