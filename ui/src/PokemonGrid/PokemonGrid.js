@@ -60,7 +60,7 @@ class PokemonGrid extends React.Component {
                 <div className="grid">
                       <GridWrapper>
                     {items.map((item,index) => (
-                        <Link to="/details" state={{ url : item.url}} ><div className="item" key={item.name}>
+                        <Link to="/details" state={{ url : item.url,id : item.id_pic, value:"E"}} ><div className="item" key={item.name}>
                             <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+item.id_pic+".png"} alt={index+1} />
                              {item.name}
                          </div></Link>

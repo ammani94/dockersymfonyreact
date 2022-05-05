@@ -6,6 +6,7 @@ import PokemonGrid  from './PokemonGrid/PokemonGrid';
 import PokemonDetails  from './PokemonDetails/PokemonDetails';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { NavigationBar } from './NavigationBar/NavigationBar';
+import EssayForm from './EssayForm/EssayForm';
 
 function App() {
   return (

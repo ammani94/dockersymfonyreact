@@ -1,6 +1,7 @@
 import './Home.css';
 import React from 'react';
 //import styled from 'styled-components';
+import EssayForm from './../EssayForm/EssayForm';
 
 
 class Home extends React.Component {
@@ -37,7 +38,12 @@ class Home extends React.Component {
     render() {
         // const { error,isLoaded,items} = this.state;
         // console.log(items);
-        return <h1>Bonjour</h1>;
+        return (
+          <div>
+          <EssayForm/>
+          </div>
+        );
+
       }
 
 
