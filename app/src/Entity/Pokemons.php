@@ -16,6 +16,9 @@ class Pokemons
     #[ORM\Column(type: 'integer')]
     private $pokemon_id;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $pokemon_name;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Pokemons
     public function setPokemonId(int $pokemon_id): self
     {
         $this->pokemon_id = $pokemon_id;
+
+        return $this;
+    }
+
+    public function getPokemonName(): ?string
+    {
+        return $this->pokemon_name;
+    }
+
+    public function setPokemonName(string $pokemon_name): self
+    {
+        $this->pokemon_name = $pokemon_name;
 
         return $this;
     }

@@ -6,7 +6,8 @@ import PokemonGrid  from './PokemonGrid/PokemonGrid';
 import PokemonDetails  from './PokemonDetails/PokemonDetails';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { NavigationBar } from './NavigationBar/NavigationBar';
-import EssayForm from './EssayForm/EssayForm';
+import PokemonCaptured from './PokemonCaptured/PokemonCaptured';
+
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
   <Route exact path="/" element={<Home />} />
   <Route exact path="/pokedex" element={<PokemonGrid />} />
   <Route exact path="/details" element={<PokemonDetails />} />
+  <Route exact path="/captured" element={<PokemonCaptured />} />
 </Routes>
   </Router>
 </React.Fragment>

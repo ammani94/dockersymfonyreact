@@ -13,12 +13,14 @@ export default function PokemonDetails() {
       let res = await fetch("http://localhost:8080/pokemon/new", {
         method: "POST",
         body: JSON.stringify({
-          pokemon_id: data.id
+          pokemon_id: data.id,
+          pokemon_name: data.name
         }),
       });
       let resJson = await res.json();
       if (res.status === 200) {
-        console.log('resJson',resJson);
+        //console.log('resJson',resJson);
+        alert(resJson.message);
       } else {
 
       }
