@@ -11,8 +11,25 @@ class PokemonCaptured extends React.Component {
         this.state = {
             error : null,
             isLoaded : false,
+            message : null,
             items : []
         };
+    }
+
+    removePokemon = (i) => {
+        fetch('http://localhost:8080/pokemon/captured/delete/'+i)
+        .then((response) => response.json())
+        .then(
+            (res) => {this.setState({
+                isLoaded : true,
+                message : res.message,
+                items:res.data
+            });
+            alert(res.message);
+                //console.log('res',res);
+
+            });
+
     }
 
     componentDidMount() {
@@ -57,6 +74,7 @@ class PokemonCaptured extends React.Component {
                     <div>
                         <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+item.id+".png"} alt={index} />
                         {item.name}
+                        <button onClick={() => this.removePokemon(item.id)}>X</button>
                     </div>
                 ))}
             </div>

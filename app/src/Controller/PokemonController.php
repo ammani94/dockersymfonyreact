@@ -61,4 +61,32 @@ class PokemonController extends AbstractController
             'data' => $a_pokemons
         ]);
     }
+
+    /**
+     * @Route("/pokemon/captured/delete/{id}", name="pokemon_captured_delete")
+     */
+    public function deleteProduct(Request $request,ManagerRegistry $doctrine, int $id): Response
+    {
+
+        $entityManager = $doctrine->getManager();
+        $data = json_decode($request->getContent(), true);
+
+        $pokemon = $doctrine->getRepository(Pokemons::class)->findOneBy(['pokemon_id' => $id]);
+        $entityManager->remove($pokemon);
+        $entityManager->flush();
+
+        $pokemons = $doctrine->getRepository(Pokemons::class)->findAll();
+
+        $a_pokemons = array();
+
+        foreach ($pokemons as $pokemon) {
+            $a_pokemons[$pokemon->getId()]['name'] = $pokemon->getPokemonName();
+            $a_pokemons[$pokemon->getId()]['id'] = $pokemon->getPokemonId();
+        }
+
+        return $this->json([
+            'message' => 'Pokemon supprimé',
+            'data' => $a_pokemons
+        ]);
+    }
 }
