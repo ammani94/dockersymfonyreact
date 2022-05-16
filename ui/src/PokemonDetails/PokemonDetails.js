@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { useForm } from "react-hook-form";
-//import reportWebVitals from './reportWebVitals';
 
 export default function PokemonDetails() {
 
@@ -19,7 +18,6 @@ export default function PokemonDetails() {
       });
       let resJson = await res.json();
       if (res.status === 200) {
-        //console.log('resJson',resJson);
         alert(resJson.message);
       } else {
 
@@ -42,9 +40,8 @@ export default function PokemonDetails() {
         setId(newData.id);
       };
       fetchData();
-    }, []);
+    });
     if (data) {
-        //console.log(data);
       return <div>
         <form onSubmit={handleSubmit}>
           <input type="submit" value="Enregistrer"/>
