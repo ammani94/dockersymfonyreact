@@ -16,6 +16,26 @@ class ToDoList extends React.Component {
         };
     }
 
+    componentDidMount() {
+
+        fetch('http://localhost:8080/to/do/listnew')
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded : true,
+                    items : result.data
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded : true,
+                    error
+                });
+            }
+        )
+    }
+
     handleChangeItems = (idx) => (evt) => {
 
         var new_items = this.state.items.slice();
@@ -51,17 +71,47 @@ class ToDoList extends React.Component {
         });
     }
 
+    handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            let res = await fetch("http://localhost:8080/to/do/add", {
+                method: "POST",
+                body: JSON.stringify({
+                    data: this.state.items,
+                }),
+            });
+            let resJson = await res.json();
+            if (res.status === 200) {
+                alert(resJson.message);
+            } else {
+
+            }
+        } catch(err) {
+            console.log('err',err);
+        }
+
+
+    }
+
     render() {
         const {error,isLoaded,items,count} = this.state;
 
+        if (!isLoaded) {
+            return (
+                <div>
+                    Chargement
+                </div>
+            );
+        }
         var length = this.state.items.length;
-
-        console.log(length);
 
 
             return (
-                <div >
+                <div>
+
                     <h1>TO-DO LIST</h1>
+                    <form onSubmit={this.handleSubmit}>
                     {this.state.items.map((item,index) => (
                         <div className="items">
                             <input
@@ -70,13 +120,15 @@ class ToDoList extends React.Component {
                             value={item.name}
                             onChange={this.handleChangeItems(index)}
                             />
-                            <button className="plus" onClick={this.handleAddItem}>+</button>
+                            <input type="button" className="plus" onClick={this.handleAddItem} value="+" />
                             {length > 1 &&
-                                <button className="minus" onClick={this.handleRemoveItem(index)}>-</button>
+                                <input type="button" className="minus" onClick={this.handleRemoveItem(index)} value="-" />
                             }
 
                         </div>
                     ))}
+                    <input type="submit" value="Enregistrer" />
+                    </form>
                 </div>
             );
     }
